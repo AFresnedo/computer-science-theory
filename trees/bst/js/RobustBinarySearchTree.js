@@ -14,18 +14,29 @@ function RobustBinarySearchTree() {
   this.root = null;
   this.count = 0;
   // data type so that it can enforce typeof? i like this idea
+
+  // TODO Privaleged methods (to implement encapsulation)
 }
 
 // Creates and adds a node with the given value
 // Pre: value matches type of other node values
 // Post: creates a node with the value and inserts it in a valid spot
-RobustBinarySearchTree.prototype.insert();
+RobustBinarySearchTree.prototype.insert() {
+  // If root is null, insert as root
+  // Else if <= val of root and left child is null, make & insert as left
+  // Else if <= val of root, call insert on left child
+  // Else if > val of root and right child is null, make & insert as right
+  // Else if > val of root, call insert on right child
+}
 
 // Returns and removes a node with given value
-RobustBinarySearchTree.prototype.remove();
+RobustBinarySearchTree.prototype.remove() {
+}
 
 // True/False based on if the BST contains a node with the value
-RobustBinarySearchTree.prototype.contains();
+RobustBinarySearchTree.prototype.contains() {
+}
 
 // Returns every node between given range of values (no range returns all)
-RobustBinarySearchTree.prototype.getAll();
+RobustBinarySearchTree.prototype.getAll() {
+}
