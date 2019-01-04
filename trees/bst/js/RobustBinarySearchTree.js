@@ -21,7 +21,7 @@ function RobustBinarySearchTree() {
 // Creates and adds a node with the given value
 // Pre: value matches type of other node values
 // Post: creates a node with the value and inserts it in a valid spot
-RobustBinarySearchTree.prototype.insert() {
+RobustBinarySearchTree.prototype.insert(val) {
   // If root is null, insert as root
   // Else if <= val of root and left child is null, make & insert as left
   // Else if <= val of root, call insert on left child
@@ -30,13 +30,26 @@ RobustBinarySearchTree.prototype.insert() {
 }
 
 // Returns and removes a node with given value
-RobustBinarySearchTree.prototype.remove() {
+RobustBinarySearchTree.prototype.remove(val) {
 }
 
 // True/False based on if the BST contains a node with the value
-RobustBinarySearchTree.prototype.contains() {
+RobustBinarySearchTree.prototype.contains(val) {
+  // TODO move the iterative code into privaleged method
+  // If currentNode is null, return false
+  // Else if currentNode.val === val, return true
+  // Else if currentNode.val >= val, call contains(val) on left child
+  // Else if currentNode.val < val, call contains(val on right child
 }
 
-// Returns every node between given range of values (no range returns all)
+// Returns every value in tree less than val, including duplicates
+RobustBinarySearchTree.prototype.getLessThan() {
+}
+
+// Returns every value in tree greater than val, including duplicates
+RobustBinarySearchTree.prototype.getGreaterThan() {
+}
+
+// Returns every value in tree, including duplicates
 RobustBinarySearchTree.prototype.getAll() {
 }
