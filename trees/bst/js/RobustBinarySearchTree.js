@@ -53,3 +53,18 @@ RobustBinarySearchTree.prototype.getGreaterThan() {
 // Returns every value in tree, including duplicates
 RobustBinarySearchTree.prototype.getAll() {
 }
+
+// Design notes:
+// public prototype methods for inheritance and memory conservation
+//  how do these access the root?
+//  if constructor had a method to return the root node then it isn't private
+//  closure doesn't work with public prototype methods...the best they can do
+//  is call the method with root as the arguement...but nothing to inherit in
+//  this case, all the code is locked in the constructor and would need to be
+//  duplicated for any objects using RBST as a prototype
+// can a prototype method somehow send a function to some function in the
+//  constructor to run? think of the constructor having access to the private
+//  data but only accepting code to manipulate that data...MEH...doesn't seem
+//  better at all
+// honestly it seems like we are forbidden to inherit privlaged methods...
+// memory conservation at least seems to be a trivial issue
