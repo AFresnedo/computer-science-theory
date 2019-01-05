@@ -1,22 +1,22 @@
 package myTrees;
 
-class BinaryNode<T extends Comparable<? super T>> {
+class EnhancedBinaryNode<T extends Comparable<? super T>> {
 
     T val;
-    BinaryNode<T> left;
-    BinaryNode<T> right;
-    BinaryNode<T> prev;
+    EnhancedBinaryNode<T> left;
+    EnhancedBinaryNode<T> right;
+    EnhancedBinaryNode<T> prev;
 
-    public BinaryNode(T value) {
+    public EnhancedBinaryNode(T value) {
         this(value, null, null, null);
     }
 
-    public BinaryNode(T value, BinaryNode<T> parent) {
+    public EnhancedBinaryNode(T value, EnhancedBinaryNode<T> parent) {
         this(value, parent, null, null);
     }
 
-    public BinaryNode(T value, BinaryNode<T> parent,
-            BinaryNode<T> leftChild, BinaryNode<T> rightChild) {
+    public EnhancedBinaryNode(T value, EnhancedBinaryNode<T> parent,
+            EnhancedBinaryNode<T> leftChild, EnhancedBinaryNode<T> rightChild) {
         this.val = value;
         this.prev = parent;
         this.left = leftChild;
