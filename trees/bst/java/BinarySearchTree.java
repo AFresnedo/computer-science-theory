@@ -2,6 +2,9 @@ package myTrees;
 
 class BinarySearchTree<T extends Comparable<? super T>> {
 
+    // Provided deep copy function
+    private final Function<T, T> valueCopier;
+
     BinaryNode<T> root;
     int count;
 
