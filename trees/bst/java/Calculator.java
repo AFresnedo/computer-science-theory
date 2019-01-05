@@ -1,3 +1,5 @@
+import java.util.function.Function;
+
 public class Calculator {
 
     interface IntegerMath {

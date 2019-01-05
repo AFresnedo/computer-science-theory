@@ -1,5 +1,7 @@
 package myTrees;
 
+import java.util.function.Function; // For lambda, used in deep copying
+
 class BinarySearchTree<T extends Comparable<? super T>> {
 
     // Provided deep copy function
@@ -8,12 +10,13 @@ class BinarySearchTree<T extends Comparable<? super T>> {
     BinaryNode<T> root;
     int count;
 
-    public BinarySearchTree() {
-        this(null);
+    public BinarySearchTree(Function<T, T> copier) {
+        this(null, copier);
     }
 
-    public BinarySearchTree(T value) {
+    public BinarySearchTree(T value, Function<T, T> copier) {
         this.root = new BinaryNode<T>(value);
+        this.valueCopier = copier;
     }
 
     // Insert value
