@@ -12,6 +12,10 @@ class RudimentaryTester {
 
         BinarySearchTree<Integer> testTwo =
             new BinarySearchTree<Integer>(5, x -> x);
-        System.out.println("value of root is: " + testTwo.root.val);
+        System.out.println("value of root is: " + testTwo.getRootValue());
+
+        BinarySearchTree<String> testThree =
+            new BinarySearchTree<String>("this is the root value", x -> x);
+        System.out.println("value of root is: " + testThree.getRootValue());
     }
 }
