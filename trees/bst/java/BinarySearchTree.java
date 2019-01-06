@@ -23,10 +23,33 @@ class BinarySearchTree<T extends Comparable<? super T>> {
      */
     public boolean insert(T value) {
         BinaryNode<T> toAdd = new BinaryNode<T>(valueCopier.apply(value));
-        return insert(toAdd, root);
+        if (root.val == null) {
+            root = toAdd;
+            return true;
+        } else {
+            return insert(toAdd, root);
+        }
     }
 
     private boolean insert(BinaryNode<T> toAdd, BinaryNode<T> current) {
+        // Determine if adding to left or else adding to right subtree
+        if (toAdd.val.compareTo(current.val) <= 0) {
+            // Determine if adding as child or continuing down left subtree
+            if (current.left == null) {
+                current.left = toAdd;
+                return true;
+            } else {
+                insert(toAdd, current.left);
+            }
+        } else {
+            // Determine if adding as child or continuing down right subtree
+            if (current.right == null) {
+                current.right = toAdd;
+                return true;
+            } else {
+                insert(toAdd, current.right);
+            }
+        }
         return false;
     }
     // Remove value (returns value)
