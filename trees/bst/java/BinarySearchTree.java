@@ -52,7 +52,49 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         }
         return false;
     }
-    // Remove value (returns value)
+
+    // TODO link issue, ordering issue, parent/child link issue, with removals
+    // it doesn't seem like parents are updating their child links if their
+    // child is removed
+
+    /**
+     * @param value to remove
+     * @return topmost occurance of value or null if not found
+     */
+    public T remove(T value) {
+        if (root.val == null) {
+            return null;
+        }
+        if (root.val == value) {
+            T toRet = root.val;
+            root = replaceWith(root);
+            return toRet;
+        }
+        // Value is not root, deteremine if searching left or right subtree
+        return null;
+    }
+
+    private T remove(T value, BinaryNode<T> current) {
+        if (current.val == value) {
+            T toRet = current.val;
+            current = replaceWith(current);
+            return toRet;
+        }
+        return null;
+    }
+
+    // TODO judge merits of design (not necessarily the root null part)
+    private BinaryNode<T> replaceWith(BinaryNode<T> toDel) {
+        if (toDel.left != null) {
+            return toDel.left;
+        }
+        if (toDel.right != null) {
+            return toDel.right;
+        }
+        // Root cannot be null, can be a node with a null value
+        return new BinaryNode<T>(null);
+    }
+
     // Contains value
     // Get value
     // Get all values less or equal to
