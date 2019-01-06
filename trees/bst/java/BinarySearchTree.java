@@ -4,30 +4,31 @@ import java.util.function.Function; // For lambda, used in deep copying
 
 class BinarySearchTree<T extends Comparable<? super T>> {
 
-    // TODO private field variables
-
-    // Provided deep copy function, for copying T values
-    public final Function<T, T> valueCopier;
-
-    public BinaryNode<T> root;
-    public int count;
+    private final Function<T, T> valueCopier; // For deep copying values
+    private BinaryNode<T> root;
+    private int count; // Number of nodes in tree
 
     public BinarySearchTree(Function<T, T> copier) {
         this(null, copier);
     }
 
     public BinarySearchTree(T value, Function<T, T> copier) {
-        this.valueCopier = copier;
+        valueCopier = copier;
         T cleanValue = valueCopier.apply(value);
-        this.root = new BinaryNode<T>(cleanValue);
+        root = new BinaryNode<T>(cleanValue);
     }
 
-    // TODO remove after testing
-    public T getRootValue() {
-        return root.val;
+    /**
+     * @param value to insert
+     */
+    public boolean insert(T value) {
+        BinaryNode<T> toAdd = new BinaryNode<T>(valueCopier.apply(value));
+        return insert(toAdd, root);
     }
 
-    // Insert value (returns boolean?)
+    private boolean insert(BinaryNode<T> toAdd, BinaryNode<T> current) {
+        return false;
+    }
     // Remove value (returns value)
     // Contains value
     // Get value
@@ -46,9 +47,9 @@ class BinarySearchTree<T extends Comparable<? super T>> {
 
         public BinaryNode(T value, BinaryNode<T> leftChild,
                 BinaryNode<T> rightChild) {
-            this.val = value;
-            this.left = leftChild;
-            this.right = rightChild;
+            val = value;
+            left = leftChild;
+            right = rightChild;
         }
     }
 }
