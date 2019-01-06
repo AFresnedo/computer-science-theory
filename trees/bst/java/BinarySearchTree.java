@@ -4,7 +4,7 @@ import java.util.function.Function; // For lambda, used in deep copying
 
 class BinarySearchTree<T extends Comparable<? super T>> {
 
-    // Provided deep copy function
+    // Provided deep copy function, for copying T values
     private final Function<T, T> valueCopier;
 
     BinaryNode<T> root;
@@ -19,7 +19,7 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         this.valueCopier = copier;
     }
 
-    // Insert value
+    // Insert value (returns boolean?)
     // Remove value (returns value)
     // Contains value
     // Get value
