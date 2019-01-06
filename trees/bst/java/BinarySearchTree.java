@@ -4,19 +4,27 @@ import java.util.function.Function; // For lambda, used in deep copying
 
 class BinarySearchTree<T extends Comparable<? super T>> {
 
-    // Provided deep copy function, for copying T values
-    private final Function<T, T> valueCopier;
+    // TODO private field variables
 
-    BinaryNode<T> root;
-    int count;
+    // Provided deep copy function, for copying T values
+    public final Function<T, T> valueCopier;
+
+    public BinaryNode<T> root;
+    public int count;
 
     public BinarySearchTree(Function<T, T> copier) {
         this(null, copier);
     }
 
     public BinarySearchTree(T value, Function<T, T> copier) {
-        this.root = new BinaryNode<T>(value);
         this.valueCopier = copier;
+        T cleanValue = valueCopier.apply(value);
+        this.root = new BinaryNode<T>(cleanValue);
+    }
+
+    // TODO remove after testing
+    public T getRootValue() {
+        return root.val;
     }
 
     // Insert value (returns boolean?)
