@@ -66,6 +66,14 @@ class BinarySearchTree<T extends Comparable<? super T>> {
     // to standardize if i want to have nodes with null values or simply null
     // links to nodes that do not hold value
 
+    // Three cases:
+    // 1a) Root node, with no children, removed
+    // 1b) Leaf node removed
+    // 2a) Node removed only had 1 subtree
+    // 2b) Sliding node (node replacing empty spot) has only 1 subtree
+    // 3) Both removed node and replacing node have 2 children, resulting in
+    //    a conflict that forces the removal process to continue down the inner
+    //    subtree of the replacing node until a 1 or 2 case is encountered
     /**
      * @param value to remove
      * @return topmost occurance of value or null if not found
