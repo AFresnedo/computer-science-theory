@@ -57,16 +57,9 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         return false;
     }
 
-    // TODO link issue, ordering issue, parent/child link issue, with removals
-    // it doesn't seem like parents are updating their child links if their
-    // child is removed
-    //
-    // It seems the bug is that it is returning a node with a null value, and
-    // while that is okay for children it is not okay for the root... so need
-    // to standardize if i want to have nodes with null values or simply null
-    // links to nodes that do not hold value
-
-    // Three cases:
+    // Four cases:
+    // 0a) Root is null
+    // 0b) Value to remove is not found
     // 1a) Root node, with no children, removed
     // 1b) Leaf node removed
     // 2a) Node removed only had 1 subtree
@@ -79,28 +72,32 @@ class BinarySearchTree<T extends Comparable<? super T>> {
      * @return topmost occurance of value or null if not found
      */
     public T remove(T value) {
+        // Case 0a
         if (root == null) {
+            // TODO consider throwing empty exception instead
             return null;
         }
-        if (root.val == value) {
-            T toRet = root.val;
-            root = replaceWith(root);
-            return toRet;
-        } else if (root.val.compareTo(value) <= 0) {
-            // Search left subtree
-            if (root.left == null) {
-                return null;
-            } else {
-                return remove(value, root.left);
-            }
-        } else {
-            // Search right subtree
-            if (root.right == null) {
-                return null;
-            } else {
-                return remove(value, root.right);
-            }
-        }
+        return remove(value, root);
+        // TODO refactor this code into private remove
+        // if (root.val == value) {
+            // T toRet = root.val;
+            // root = replaceWith(root);
+            // return toRet;
+        // } else if (root.val.compareTo(value) <= 0) {
+            // // Search left subtree
+            // if (root.left == null) {
+                // return null;
+            // } else {
+                // return remove(value, root.left);
+            // }
+        // } else {
+            // // Search right subtree
+            // if (root.right == null) {
+                // return null;
+            // } else {
+                // return remove(value, root.right);
+            // }
+        // }
     }
 
     private T remove(T value, BinaryNode<T> current) {
@@ -109,6 +106,7 @@ class BinarySearchTree<T extends Comparable<? super T>> {
             current = replaceWith(current);
             return toRet;
         }
+        // Case 0b, where the value does not exist in non-empty tree
         return null;
     }
 
