@@ -35,13 +35,37 @@ class BinarySearchTree<T extends Comparable<? super T>> {
     }
 
     // Returns all values less than or equal to parameter
-    public T getLessThanOrEqualTo(T value) {
-        return null;
+    public LinkedList<T> getLessThanOrEqualTo(T value) {
+        LinkedList<T> list = new LinkedList<T>();
+        BinaryNode<T> start = root;
+        // Find first occurance of a value less than or equal to value
+        while (start != null && value.compareTo(start.val) > 0) {
+            start = start.left;
+        }
+        if (start == null) {
+            // No values in tree are less than or equal to arguement
+            return null;
+        }
+        // Add all values in tree <= value to list
+        inOrder(list, start);
+        return list;
     }
 
     // Returns all values greater than or equal to parameter
-    public T getGreaterThanOrEqualTo(T value) {
-        return null;
+    public LinkedList<T> getGreaterThanOrEqualTo(T value) {
+        LinkedList<T> list = new LinkedList<T>();
+        BinaryNode<T> start = root;
+        // Find first occurance of a value less than or equal to value
+        while (start != null && value.compareTo(start.val) < 0) {
+            start = start.right;
+        }
+        if (start == null) {
+            // No values in tree are less than or equal to arguement
+            return null;
+        }
+        // Add all values in tree >= value to list
+        inOrder(list, start);
+        return list;
     }
 
     /**
@@ -79,24 +103,23 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         }
     }
 
-    // TODO fix recursion bug (append current value, return current.val)
+    // TODO redesign, this is mutating arguement...could be better
+    // Pre: node passed is not null
     // Returns list of values from an inorder traversal
-    private T inorder(LinkedList<T> list,
+    private void inOrder(LinkedList<T> list,
             BinaryNode<T> current) throws NullPointerException {
         if (current == null) {
             throw new NullPointerException("cannot call inorder on null node");
         }
         if (current.left != null) {
             // Traverse left subtree for values less than current
-            list.addLast(inorder(list, current.left));
+            inOrder(list, current.left);
         }
-        // Append current value
-        list.addLast(inorder(list, current));
+        list.addLast(current.val);
         if (current.right != null) {
             // Traverse right subtree for values greater than current
-            list.addLast(inorder(list, current.right));
+            inOrder(list, current.right);
         }
-        return current.val;
     }
 
     private boolean insert(BinaryNode<T> toAdd, BinaryNode<T> current) {
