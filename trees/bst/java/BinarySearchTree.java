@@ -103,23 +103,31 @@ class BinarySearchTree<T extends Comparable<? super T>> {
     private T remove(T value, BinaryNode<T> current) {
         if (current.val == value) {
             T toRet = current.val;
-            current = replaceWith(current);
+            // Fill in empty slot by pulling values from underneath
+            pullValues(current);
             return toRet;
         }
         // Case 0b, where the value does not exist in non-empty tree
         return null;
     }
 
-    // TODO fix bug where link to "other" subtree is lost
-    // TODO judge merits of design (not necessarily the root null part)
-    private BinaryNode<T> replaceWith(BinaryNode<T> toDel) {
-        if (toDel.left != null) {
-            return toDel.left;
+    // Pull values from right side of the subtree until exhausted
+    private void pullValues(BinaryNode<T> current) {
+        BinaryNode<T> next = current.right;
+        // Pull values up 1 level
+        while (next != null) {
+            current.val = next.val;
+            current = current.right;
+            next = next.right;
         }
-        if (toDel.right != null) {
-            return toDel.right;
+        // After values pulled, handle remaining empty slot
+        if (current.left == null) {
+            // Leaf node to be removed
+            current = null;
+        } else {
+            // Replace empty node with left child
+            current = current.left;
         }
-        return null;
     }
 
     // Contains value
