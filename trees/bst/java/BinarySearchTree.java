@@ -22,6 +22,17 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         }
     }
 
+    public boolean contains(T value) {
+        if (find(value, root) == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public T get(T value) {
+        return find(value, root);
+    }
+
     /**
      * @param value to insert
      */
@@ -32,6 +43,32 @@ class BinarySearchTree<T extends Comparable<? super T>> {
             return true;
         } else {
             return insert(toAdd, root);
+        }
+    }
+
+    /**
+     * @param value to remove
+     * @return topmost occurance of value (or null, if not found)
+     */
+    public T remove(T value) {
+        return remove(value, root);
+    }
+
+    // TODO:
+    // Get all values less or equal to
+    // Get all values greater or equal to
+
+    private T find(T value, BinaryNode<T> current) {
+        if (current == null) {
+            // Value not in tree
+            return null;
+        }
+        if (value.compareTo(current.val) == 0) {
+            return current.val;
+        } else if (value.compareTo(current.val) < 0) {
+            return remove(value, current.left);
+        } else {
+            return remove(value, current.right);
         }
     }
 
@@ -57,12 +94,17 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         return false;
     }
 
-    /**
-     * @param value to remove
-     * @return topmost occurance of value (or null, if not found)
-     */
-    public T remove(T value) {
-        return remove(value, root);
+    // Pull values, from right side of the subtree, until exhausted
+    private void pullValues(BinaryNode<T> current) {
+        BinaryNode<T> next = current.right;
+        // Pull values up 1 level
+        while (next != null) {
+            current.val = next.val;
+            current = current.right;
+            next = next.right;
+        }
+        // Replace last right subtree node with left child (may be null)
+        current = current.left;
     }
 
     private T remove(T value, BinaryNode<T> current) {
@@ -81,25 +123,6 @@ class BinarySearchTree<T extends Comparable<? super T>> {
             return remove(value, current.right);
         }
     }
-
-    // Pull values, from right side of the subtree, until exhausted
-    private void pullValues(BinaryNode<T> current) {
-        BinaryNode<T> next = current.right;
-        // Pull values up 1 level
-        while (next != null) {
-            current.val = next.val;
-            current = current.right;
-            next = next.right;
-        }
-        // Replace last right subtree node with left child (may be null)
-        current = current.left;
-    }
-
-    // TODO:
-    // Contains value
-    // Get value
-    // Get all values less or equal to
-    // Get all values greater or equal to
 
     @Override
     public String toString() {
