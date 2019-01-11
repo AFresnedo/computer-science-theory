@@ -1,6 +1,7 @@
 package myTrees;
 
 import java.util.function.Function; // For lambda, used in deep copying
+import java.util.LinkedList;
 
 class BinarySearchTree<T extends Comparable<? super T>> {
 
@@ -33,6 +34,16 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         return find(value, root);
     }
 
+    // Returns all values less than or equal to parameter
+    public T getLessThanOrEqualTo(T value) {
+        return null;
+    }
+
+    // Returns all values greater than or equal to parameter
+    public T getGreaterThanOrEqualTo(T value) {
+        return null;
+    }
+
     /**
      * @param value to insert
      */
@@ -54,10 +65,6 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         return remove(value, root);
     }
 
-    // TODO:
-    // Get all values less or equal to
-    // Get all values greater or equal to
-
     private T find(T value, BinaryNode<T> current) {
         if (current == null) {
             // Value not in tree
@@ -70,6 +77,26 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         } else {
             return remove(value, current.right);
         }
+    }
+
+    // TODO fix recursion bug (append current value, return current.val)
+    // Returns list of values from an inorder traversal
+    private T inorder(LinkedList<T> list,
+            BinaryNode<T> current) throws NullPointerException {
+        if (current == null) {
+            throw new NullPointerException("cannot call inorder on null node");
+        }
+        if (current.left != null) {
+            // Traverse left subtree for values less than current
+            list.addLast(inorder(list, current.left));
+        }
+        // Append current value
+        list.addLast(inorder(list, current));
+        if (current.right != null) {
+            // Traverse right subtree for values greater than current
+            list.addLast(inorder(list, current.right));
+        }
+        return current.val;
     }
 
     private boolean insert(BinaryNode<T> toAdd, BinaryNode<T> current) {
