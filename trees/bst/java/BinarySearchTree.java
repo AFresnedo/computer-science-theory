@@ -72,46 +72,27 @@ class BinarySearchTree<T extends Comparable<? super T>> {
      * @return topmost occurance of value or null if not found
      */
     public T remove(T value) {
-        // Case 0a
-        if (root == null) {
-            // TODO consider throwing empty exception instead
-            return null;
-        }
         return remove(value, root);
-        // TODO refactor this code into private remove
-        // if (root.val == value) {
-            // T toRet = root.val;
-            // root = replaceWith(root);
-            // return toRet;
-        // } else if (root.val.compareTo(value) <= 0) {
-            // // Search left subtree
-            // if (root.left == null) {
-                // return null;
-            // } else {
-                // return remove(value, root.left);
-            // }
-        // } else {
-            // // Search right subtree
-            // if (root.right == null) {
-                // return null;
-            // } else {
-                // return remove(value, root.right);
-            // }
-        // }
     }
 
     private T remove(T value, BinaryNode<T> current) {
-        if (current.val == value) {
+        if (current == null) {
+            // Value not in tree
+            return null;
+        }
+        if (value.compareTo(current.val) == 0) {
             T toRet = current.val;
             // Fill in empty slot by pulling values from underneath
             pullValues(current);
             return toRet;
+        } else if (value.compareTo(current.val) < 0) {
+            return remove(value, current.left);
+        } else {
+            return remove(value, current.right);
         }
-        // Case 0b, where the value does not exist in non-empty tree
-        return null;
     }
 
-    // Pull values from right side of the subtree until exhausted
+    // Pull values, from right side of the subtree, until exhausted
     private void pullValues(BinaryNode<T> current) {
         BinaryNode<T> next = current.right;
         // Pull values up 1 level
@@ -120,14 +101,8 @@ class BinarySearchTree<T extends Comparable<? super T>> {
             current = current.right;
             next = next.right;
         }
-        // After values pulled, handle remaining empty slot
-        if (current.left == null) {
-            // Leaf node to be removed
-            current = null;
-        } else {
-            // Replace empty node with left child
-            current = current.left;
-        }
+        // Replace last right subtree node with left child (may be null)
+        current = current.left;
     }
 
     // Contains value
