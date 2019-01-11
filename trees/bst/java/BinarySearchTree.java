@@ -57,19 +57,9 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         return false;
     }
 
-    // Four cases:
-    // 0a) Root is null
-    // 0b) Value to remove is not found
-    // 1a) Root node, with no children, removed
-    // 1b) Leaf node removed
-    // 2a) Node removed only had 1 subtree
-    // 2b) Sliding node (node replacing empty spot) has only 1 subtree
-    // 3) Both removed node and replacing node have 2 children, resulting in
-    //    a conflict that forces the removal process to continue down the inner
-    //    subtree of the replacing node until a 1 or 2 case is encountered
     /**
      * @param value to remove
-     * @return topmost occurance of value or null if not found
+     * @return topmost occurance of value (or null, if not found)
      */
     public T remove(T value) {
         return remove(value, root);
@@ -105,6 +95,7 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         current = current.left;
     }
 
+    // TODO:
     // Contains value
     // Get value
     // Get all values less or equal to
