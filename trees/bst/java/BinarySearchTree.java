@@ -81,6 +81,12 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         }
     }
 
+    public void insertBulk(LinkedList<T> values) {
+        for (int i = 0; i < values.size(); i++) {
+            insert(values.get(i));
+        }
+    }
+
     /**
      * @param value to remove
      * @return topmost occurance of value (or null, if not found)
