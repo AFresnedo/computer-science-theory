@@ -1,7 +1,8 @@
-package myTrees;
+package io.github.afresnedo.trees;
+
 import java.util.LinkedList;
 
-class RudimentaryTester {
+class BinarySearchTreeTest {
 
     public static void main(String[] args) {
         BinarySearchTree<Integer> testOne =

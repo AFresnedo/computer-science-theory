@@ -1,5 +1,6 @@
-package myTrees;
+package io.github.afresnedo.trees;
 
+import io.github.afresnedo.trees.BinaryNode; // For element in this container
 import java.util.function.Function; // For lambda, used in deep copying
 import java.util.LinkedList;
 
@@ -183,23 +184,5 @@ class BinarySearchTree<T extends Comparable<? super T>> {
     @Override
     public String toString() {
         return "BST toString";
-    }
-
-    private class BinaryNode<T extends Comparable<? super T>> {
-
-        T val;
-        BinaryNode<T> left;
-        BinaryNode<T> right;
-
-        public BinaryNode(T value) {
-            this(value, null, null);
-        }
-
-        public BinaryNode(T value, BinaryNode<T> leftChild,
-                BinaryNode<T> rightChild) {
-            val = value;
-            left = leftChild;
-            right = rightChild;
-        }
     }
 }
