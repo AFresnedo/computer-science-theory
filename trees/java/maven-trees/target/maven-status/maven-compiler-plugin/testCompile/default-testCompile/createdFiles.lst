@@ -1,3 +1,4 @@
 io/github/afresnedo/trees/AppTest.class
-io/github/afresnedo/trees/FirstJUnit5Tests.class
+io/github/afresnedo/trees/OldBinarySearchTreeTest.class
 io/github/afresnedo/trees/BinarySearchTreeTest.class
+io/github/afresnedo/trees/FirstJUnit5Tests.class
