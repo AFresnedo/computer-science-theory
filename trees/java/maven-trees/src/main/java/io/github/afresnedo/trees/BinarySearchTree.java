@@ -104,9 +104,9 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         if (value.compareTo(current.val) == 0) {
             return current.val;
         } else if (value.compareTo(current.val) < 0) {
-            return remove(value, current.left);
+            return find(value, current.left);
         } else {
-            return remove(value, current.right);
+            return find(value, current.right);
         }
     }
 
