@@ -67,7 +67,6 @@ class BinarySearchTreeTest {
     @Test
     @DisplayName("Contains returns true iff ele is in tree")
     void testContains() {
-        System.out.println("listInts is now: " + listInts);
         // If int is in list, then it must be in tree
         listInts.forEach(x -> {
             assertTrue(intsTree.contains(x));
