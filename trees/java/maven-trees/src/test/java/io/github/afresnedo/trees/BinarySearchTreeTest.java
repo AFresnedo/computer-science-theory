@@ -13,6 +13,11 @@ import java.util.LinkedList;
 @DisplayName("Binary Search Tree Unit Test")
 class BinarySearchTreeTest {
 
+    // Randomly generated ints will never be higher than 1000
+    final static int RANDOM_INT_CEILING = 1000;
+    // Randomly generated ints will never be lower than -100
+    final static int RANDOM_INT_FLOOR = -100;
+
     // Data structures instantiated by BeforeEach and available to all tests
     LinkedList<Integer> listInts;
     BinarySearchTree<Integer> intsTree;
@@ -23,7 +28,8 @@ class BinarySearchTreeTest {
         // Create a list of 20 random integers (100 to 1000) to insert to tree
         listInts = new LinkedList<Integer>();
         Random rand = new Random();
-        rand.ints(20, 100, 1000).forEach(num -> listInts.add(num));
+        rand.ints(20, RANDOM_INT_FLOOR, RANDOM_INT_CEILING)
+            .forEach(num -> listInts.add(num));
         // Build tree
         intsTree = new BinarySearchTree<Integer>(x -> x);
         intsTree.insertBulk(listInts);
@@ -64,11 +70,11 @@ class BinarySearchTreeTest {
         System.out.println("listInts is now: " + listInts);
         // If int is in list, then it must be in tree
         listInts.forEach(x -> {
-            System.out.println("x is: " + x);
-            System.out.println("x is in the tree: " + intsTree.contains(x));
             assertTrue(intsTree.contains(x));
         });
-        // If int is not in list, it cannot be in tree
+        // If int is outside of random number range, it cannot be in the tree
+        assertFalse(intsTree.contains(RANDOM_INT_CEILING + 1));
+        assertFalse(intsTree.contains(RANDOM_INT_FLOOR - 1));
     }
 
     @Test
