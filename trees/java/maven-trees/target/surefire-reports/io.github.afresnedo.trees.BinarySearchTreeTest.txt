@@ -1,4 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: io.github.afresnedo.trees.BinarySearchTreeTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s - in io.github.afresnedo.trees.BinarySearchTreeTest
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.024 s <<< FAILURE! - in io.github.afresnedo.trees.BinarySearchTreeTest
+testContains  Time elapsed: 0.008 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at io.github.afresnedo.trees.BinarySearchTreeTest.lambda$testContains$6(BinarySearchTreeTest.java:69)
+	at io.github.afresnedo.trees.BinarySearchTreeTest.testContains(BinarySearchTreeTest.java:66)
+
