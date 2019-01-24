@@ -78,7 +78,6 @@ class BinarySearchTreeTest {
 
     @Test
     @DisplayName("Insert adds element to tree in correct position")
-    // Generate a random number list from 100 to 1000
     void testInsert() {
     }
 
