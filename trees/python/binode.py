@@ -10,18 +10,26 @@ class BinaryNode:
         self.right = right
 
     def __str__(self):
+        self.check_integrity()
         if self.left == None and self.right == None:
             return 'A childless node holding: {}'.format(self.val)
         elif self.right == None:
-            return ('A node holding: {}, with a left child holding: '
+            return ('A BinaryNode holding: {}, with a left child holding: '
                     '{}'.format(self.val, self.left.val))
         elif self.left == None:
-            return ('A node holding: {}, with a right child holding: '
+            return ('A BinaryNode holding: {}, with a right child holding: '
                     '{}'.format(self.val, self.right.val))
         else:
-            return ('A node holding: {}, with a left child holding: {}, '
+            return ('A BinaryNode holding: {}, with a left child holding: {}, '
                     'and a right child holding: {}'.format(self.val,
                         self.left.val, self.right.val))
+
+    def check_integrity(self):
+        if self.left != None and not isinstance(self.left, BinaryNode):
+            raise TypeError('left child is not a valid type')
+        if self.right != None and not isinstance(self.right, BinaryNode):
+            raise TypeError('right child is not a valid type')
+
 
 firstNode = BinaryNode(0, None, None)
 
@@ -40,5 +48,9 @@ firstNode.left = BinaryNode('hello', None, None)
 print(firstNode)
 
 firstNode.right = None
+
+print(firstNode)
+
+firstNode.right = 3
 
 print(firstNode)
