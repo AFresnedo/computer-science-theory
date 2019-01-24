@@ -26,9 +26,9 @@ class BinaryNode:
 
     def check_integrity(self):
         if self.left != None and not isinstance(self.left, BinaryNode):
-            raise TypeError('left child is not a valid type')
+            raise TypeError('left child must be a BinaryNode or None')
         if self.right != None and not isinstance(self.right, BinaryNode):
-            raise TypeError('right child is not a valid type')
+            raise TypeError('right child must be a BinaryNode or None')
 
 
 firstNode = BinaryNode(0, None, None)
