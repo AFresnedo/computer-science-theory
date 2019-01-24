@@ -4,10 +4,10 @@ class BinaryNode:
         raise TypeError('left link should be a BinaryNode type')
     if not isinstance(right, BinaryNode) and right is not None:
         raise TypeError('right link should be a BinaryNode type')
-    self.val = val;
-    self.left = left;
-    self.right = right;
+    self.val = val
+    self.left = left
+    self.right = right
 
-firstNode = BinaryNode(0, None, None);
+firstNode = BinaryNode(0, None, None)
 
-secondNode = BinaryNode();
+secondNode = BinaryNode()
