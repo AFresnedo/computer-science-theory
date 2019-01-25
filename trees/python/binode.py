@@ -26,6 +26,10 @@ class BinaryNode:
                     'and a right child holding: {}'.format(self.val,
                         self.left.val, self.right.val))
 
+    # Does not test presence of child nodes
+    def __bool__(self):
+        return False if self.val == None else True
+
     def check_integrity(self):
         if self.left != None and not isinstance(self.left, BinaryNode):
             raise TypeError('left child must be a BinaryNode or None')
