@@ -1,5 +1,7 @@
 class BinaryNode:
 
+    # FIXME type checking is not conventional in python, check behavior instead
+
     def __init__(self, val = None, left = None, right = None):
         if not isinstance(left, BinaryNode) and left is not None:
             raise TypeError('left link should be a BinaryNode type')
@@ -29,28 +31,3 @@ class BinaryNode:
             raise TypeError('left child must be a BinaryNode or None')
         if self.right != None and not isinstance(self.right, BinaryNode):
             raise TypeError('right child must be a BinaryNode or None')
-
-
-firstNode = BinaryNode(0, None, None)
-
-secondNode = BinaryNode()
-
-firstNode.val = 3
-
-print(firstNode)
-
-firstNode.right = BinaryNode(4, None, None)
-
-print(firstNode)
-
-firstNode.left = BinaryNode('hello', None, None)
-
-print(firstNode)
-
-firstNode.right = None
-
-print(firstNode)
-
-firstNode.right = 3
-
-print(firstNode)
