@@ -1,7 +1,5 @@
 class BinaryNode:
 
-    # FIXME type checking is not conventional in python, check behavior instead
-
     def __init__(self, val = None, left = None, right = None):
         if not isinstance(left, BinaryNode) and left is not None:
             raise TypeError('left link should be a BinaryNode type')
@@ -26,10 +24,15 @@ class BinaryNode:
                     'and a right child holding: {}'.format(self.val,
                         self.left.val, self.right.val))
 
-    # Does not test presence of child nodes
+    # Does not consider presence of child nodes
     def __bool__(self):
         return False if self.val == None else True
 
+    # FIXME one liner is too long, how to break line?
+    def __eq__(self, operand):
+        return True if hasattr(operand, 'value') and self.value == operand.value else False
+
+    # FIXME type checking is not conventional in python, check behavior instead
     def check_integrity(self):
         if self.left != None and not isinstance(self.left, BinaryNode):
             raise TypeError('left child must be a BinaryNode or None')
