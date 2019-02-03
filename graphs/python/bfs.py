@@ -34,6 +34,7 @@ class Graph:
                 if (discovered[adj] == False):
                     queue.append(adj)
 
+print('---FIRST TEST---')
 first = Graph()
 first.add_edge(0, 1)
 first.add_edge(1, 0)
@@ -42,3 +43,13 @@ first.add_edge(2, 1)
 first.add_edge(2, 3)
 first.add_edge(3, 2)
 first.print_bfs()
+
+print('---SECOND TEST---')
+second = Graph()
+second.add_edge(0, 1)
+second.add_edge(0, 2)
+second.add_edge(1, 2)
+second.add_edge(2, 0)
+second.add_edge(2, 3)
+second.add_edge(3, 3)
+second.print_bfs(2)
