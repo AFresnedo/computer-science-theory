@@ -9,8 +9,11 @@ class Graph:
     def __init__(self):
         self.adj_list = {}
 
-    def add_edge(self, node, edge):
-        self.adj_list(node).append(edge)
+    def add_edge(self, start, end):
+        if start in self.adj_list:
+            self.adj_list[start].append(end)
+        else:
+            self.adj_list[start] = [end]
 
     # Print nodes using a bfs, starting from s
     # s is the index of the node in adj_list
