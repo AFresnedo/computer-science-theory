@@ -30,7 +30,7 @@ class Graph:
             discovered[explore] = True
             print('exploring: ' + str(explore))
             # Add all unexplored adj nodes for discovery in next layer
-            for adj in self.adj_list(explore):
+            for adj in self.adj_list[explore]:
                 if (discovered[adj] == False):
                     queue.append(adj)
 
