@@ -25,7 +25,17 @@ class Graph:
             explore = queue.popleft()
             # Mark node as explored so it is not re-entered into the queue
             discovered[explore] = True
+            print('exploring: ' + str(explore))
             # Add all unexplored adj nodes for discovery in next layer
             for adj in self.adj_list(explore):
                 if (discovered[adj] == False):
                     queue.append(adj)
+
+first = Graph()
+first.add_edge(0, 1)
+first.add_edge(1, 0)
+first.add_edge(1, 2)
+first.add_edge(2, 1)
+first.add_edge(2, 3)
+first.add_edge(3, 2)
+first.print_bfs()
